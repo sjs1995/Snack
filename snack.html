@@ -17,7 +17,7 @@
 <body>
     <canvas id="can" width="400" height="400" style="background-color: black">对不起，您的浏览器不支持canvas</canvas>
     <script>
-  
+
     var snake = [41, 40],  //snake队列表示蛇身，初始节点存在但不显示
     direction = 1,   //1表示向右，-1表示向左，20表示向下，-20表示向上
     food = 43,    //食物的位置
@@ -31,7 +31,13 @@
         }
     document.onkeydown = function(evt) { 
             //当键盘上下左右键摁下的时候改变direction
-        direction = snake[1] - snake[0] == (n = [-1, -20, 1, 20][(evt || event).keyCode - 37] || direction) ? direction : n;
+            n = [-1, -20, 1, 20][(evt || event).keyCode - 37]
+            if(snake[1] - snake[0] == n){
+                direction=direction;
+            } else {
+                direction=n;
+            }
+        //direction = snake[1] - snake[0] == (n = [-1, -20, 1, 20][(evt || event).keyCode - 37]) ? direction : n;
         };
     !function() {
     snake.unshift(n = snake[0] + direction); 
